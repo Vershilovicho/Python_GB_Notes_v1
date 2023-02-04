@@ -14,6 +14,13 @@ class Notes:
         self._msg = msg
         self._change_date = datetime.now()
 
+    def __str__(self):
+        details = ''
+        details += f'{self._id}'
+        details += f'{self._title}'
+        details += f'{self._msg}'
+        details += f'{self._change_date}'
+
     def get_id(self):
         return self._id
 
