@@ -2,46 +2,48 @@ from datetime import datetime
 
 
 class Notes:
-    _id = 0
-    _title = ''
-    _msg = ''
-    _change_date = None
-
-    def __new__(cls, *args, **kwargs):
-        print('Создан новый экземпляр класса Notes')
-        return super().__new__(cls)
+    id = 0
+    title = ''
+    msg = ''
+    change_date = None
 
     def __init__(self, title, msg):
-        self._id += 1
-        self._title = title
-        self._msg = msg
-        self._change_date = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+        self.id = Notes.id + 1
+        Notes.id += 1
+        self.title = title
+        self.msg = msg
+        self.change_date = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
     def __str__(self):
         details = ''
-        details += f'{self._id} '
-        details += f'{self._title}; '
-        details += f'{self._msg}; '
-        details += f'{self._change_date}'
+        details += f'{self.id} '
+        details += f'{self.title}; '
+        details += f'{self.msg}; '
+        details += f'{self.change_date}'
         return details
 
     def get_id(self):
-        return self._id
+        return self.id
 
     def get_title(self):
-        return self._title
+        return self.title
 
     def get_msg(self):
-        return self._msg
+        return self.msg
 
     def get_change_date(self):
-        return self._change_date
+        return self.change_date
+
+    def set_id(self, data):
+        self.id = data
+        return self.id
 
     def set_title(self, x):
-        self._title = x
+        self.title = x
 
     def set_msg(self, x):
-        self._msg = x
+        self.msg = x
 
     def set_change_date(self, x):
-        self._change_date = x
+        self.change_date = x
+
