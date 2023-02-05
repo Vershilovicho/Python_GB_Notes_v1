@@ -1,4 +1,6 @@
 from notes_connector import start_note
+import sys
 
-start_note()
+data = sys.stdin.read(start_note())
+
 

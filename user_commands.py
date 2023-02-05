@@ -1,14 +1,14 @@
 from user_interface import Notes
 from save_read_file import load_file
-
+import re
 
 
 def create_new_note():
-    '''
+    """
     Коннектор, принимает input данных title, msg от пользователя,
     подставляет автоматом id, date.
     :return:
-    '''
+    """
     title = create_tittle()
     msg = create_msg()
     new_notes = Notes(title, msg)
@@ -17,6 +17,10 @@ def create_new_note():
 
 
 def create_tittle():
+    """
+    Создает название заметки
+    :return: Название заметки
+    """
     title = input('Введите название Заметки: ')
     # title = 'Новая заметка'
     return title
@@ -29,14 +33,14 @@ def create_msg():
 
 
 def save_note_to_data(id, title, msg, date):
-    '''
+    """
     Принимает значения атрибутов класса, переводит их в словарь.
     :param id:  Атрибут
     :param title: Атрибу
     :param msg: Атрибут
     :param date: Атрибут
     :return: Возвращает словарем значения атрибута класса
-    '''
+    """
     date_list = {
         'id': id,
         'title': title,
@@ -47,16 +51,46 @@ def save_note_to_data(id, title, msg, date):
 
 
 def show_all_notice():
+    """
+    Показывает все заметки, на вход ничего не принимает
+    :return: Все заметки
+    """
     try:
         result = load_file()
         return result
     except FileNotFoundError as e:
         print(f'{"-" * 15}\nЗаметок еще нет\n{"-" * 15}')
 
-# def del_note(id):
 
-
-# def save_note(data): # под вопросом
-#     save_file(data)
-#     return 'Данные сохранены'
-
+def search_notice(data_list, search_data, choice):
+    """
+    Ищет заметки в файле
+    :param data_list: Указываются данные в виде списка словарей
+    :param search_data: Указывается текст для поиска
+    :param choice: switch case выбора типа поиска(1, 2, 3, 4)
+    :return: Возвращает список словарей заметок
+    """
+    if choice == 1:
+        data = list(filter(lambda x: x['id'] == search_data, data_list))
+        if not data:
+            print(f'\n\nДанных с таким id нет.\n\n')
+        else:
+            print(f'\n\nПо вашему запросу найдены следующие заметки: \n\n{data}\n')
+    elif choice == 2:
+        data = list(filter(lambda x: ['title'] == search_data, data_list))
+        if not data:
+            print(f'\n\nДанных с таким id нет.\n\n')
+        else:
+            print(f'\n\nПо вашему запросу найдены следующие заметки: \n\n{data}\n')
+    elif choice == 3:
+        data = list(filter(lambda x: x['msg'] == search_data, data_list))
+        if not data:
+            print(f'\n\nДанных с таким id нет.\n\n')
+        else:
+            print(f'\n\nПо вашему запросу найдены следующие заметки: \n\n{data}\n')
+    elif choice == 4:
+        data = list(filter(lambda x: x['date'] == search_data, data_list))
+        if not data:
+            print(f'\n\nДанных с таким id нет.\n\n')
+        else:
+            print(f'\n\nПо вашему запросу найдены следующие заметки: \n\n{data}\n')
