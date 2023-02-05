@@ -7,9 +7,12 @@ class Notes:
     _msg = ''
     _change_date = None
 
+    def __new__(cls, *args, **kwargs):
+        print('Создан новый экземпляр класса Notes')
+        return super().__new__(cls)
+
     def __init__(self, title, msg):
-        self._id = Notes._id + 1
-        Notes._id += 1
+        self._id += 1
         self._title = title
         self._msg = msg
         self._change_date = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
@@ -21,7 +24,6 @@ class Notes:
         details += f'{self._msg}; '
         details += f'{self._change_date}'
         return details
-
 
     def get_id(self):
         return self._id
