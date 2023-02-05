@@ -45,6 +45,7 @@ def save_note_to_data(id, title, msg, date):
     }
     return date_list
 
+
 def show_all_notice():
     result = load_file()
     return result
