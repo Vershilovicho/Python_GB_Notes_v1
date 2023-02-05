@@ -47,8 +47,11 @@ def save_note_to_data(id, title, msg, date):
 
 
 def show_all_notice():
-    result = load_file()
-    return result
+    try:
+        result = load_file()
+        return result
+    except FileNotFoundError as e:
+        print(f'{"-" * 15}\nЗаметок еще нет\n{"-" * 15}')
 
 # def del_note(id):
 
