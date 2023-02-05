@@ -46,4 +46,3 @@ class Notes:
 
     def set_change_date(self, x):
         self.change_date = x
-

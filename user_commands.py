@@ -1,6 +1,5 @@
 from user_interface import Notes
 from save_read_file import load_file
-import re
 
 
 def create_new_note():
@@ -58,7 +57,7 @@ def show_all_notice():
     try:
         result = load_file()
         return result
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         print(f'{"-" * 15}\nЗаметок еще нет\n{"-" * 15}')
 
 

@@ -1,4 +1,4 @@
-from save_read_file import save_file, load_file
+from save_read_file import save_file
 from user_commands import create_new_note, show_all_notice, search_notice
 import json
 
@@ -16,12 +16,12 @@ def start_note():
     print('*** Добро пожаловать в програму заметки! *** \n')
     while True:
         program = input(str(f'{"*" * 40} \n             Вы в меню\n {"*" * 40} \n'
-                        f'{"-" * 15}Введите{"-" * 15}\n'
-                                  f'1 - Создать новую заметку\n'
-                                  f'2 - Выйти\n'
-                                  f'3 - Показать все заметки\n'
-                                  f'4 - Найти заметку\n'
-                                  f'Вводите сюда --->: '))
+                            f'{"-" * 15}Введите{"-" * 15}\n'
+                            f'1 - Создать новую заметку\n'
+                            f'2 - Выйти\n'
+                            f'3 - Показать все заметки\n'
+                            f'4 - Найти заметку\n'
+                            f'Вводите сюда --->: '))
         menu = {
             '1': 'start',
             '2': 'quit',
@@ -41,11 +41,11 @@ def start_note():
                 show_all_notice()
             elif program == 'search':
                 choice = input(f'{"-" * 15}Выберите поле для поиска:{"-" * 15}\n'
-                                  f'1 - Поиск по id\n'
-                                  f'2 - Поиск по Теме\n'
-                                  f'3 - Поиск по сообщению в заметке\n'
-                                  f'4 - Поиск по дате и времени\n'
-                                  f'Вводите сюда --->: ')
+                               f'1 - Поиск по id\n'
+                               f'2 - Поиск по Теме\n'
+                               f'3 - Поиск по сообщению в заметке\n'
+                               f'4 - Поиск по дате и времени\n'
+                               f'Вводите сюда --->: ')
 
                 search_type = {
                     '1': 'id',
@@ -68,7 +68,7 @@ def start_note():
                     elif choice == 'data':
                         search = input('Введите "Полную дату" для поиска:')
                         search_notice(temp_list, search, 4)
-                except FileNotFoundError as e:
+                except FileNotFoundError:
                     print(f'Вы еще не создали ни одной заметки!')
-        except KeyError as e:
+        except KeyError:
             print('Введено неверное значение, возврат в меню!')
