@@ -23,7 +23,7 @@ def start_note():
         try:
             program = menu[program]
             if program == 'quit':
-                break
+                exit(0)
             elif program == 'start':
                 start = create_new_note()
                 save_file(start)
