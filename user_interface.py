@@ -12,14 +12,16 @@ class Notes:
         Notes._id += 1
         self._title = title
         self._msg = msg
-        self._change_date = datetime.now()
+        self._change_date = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
     def __str__(self):
         details = ''
-        details += f'{self._id}'
-        details += f'{self._title}'
-        details += f'{self._msg}'
+        details += f'{self._id} '
+        details += f'{self._title}; '
+        details += f'{self._msg}; '
         details += f'{self._change_date}'
+        return details
+
 
     def get_id(self):
         return self._id

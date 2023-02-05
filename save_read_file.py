@@ -1,7 +1,12 @@
 import csv
 
 def save_file(data):
-    with open('Notes.csv', encoding='UTF-8', newline='') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row)
+    '''
+    Записывает данные формата list в txt файл.
+    :param data: Данные типа list
+    :return: записывает в формат *.txt значения (в одну строрку)
+    '''
+    with open('Notes.txt', 'w', encoding='UTF-8', newline='') as file:
+        for item in data:
+            print(f'{item}; ', file=file, end='')
+
