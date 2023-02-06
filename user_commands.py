@@ -1,5 +1,6 @@
 from user_interface import Notes
-from save_read_file import load_file
+from datetime import datetime
+from save_read_file import load_file, rewrite_file
 
 
 def create_new_note():
@@ -55,7 +56,7 @@ def show_all_notice():
     :return: Все заметки
     """
     try:
-        result = load_file()
+        result = print(load_file())
         return result
     except FileNotFoundError:
         print(f'{"-" * 15}\nЗаметок еще нет\n{"-" * 15}')
@@ -93,3 +94,58 @@ def search_notice(data_list, search_data, choice):
             print(f'\n\nДанных с таким id нет.\n\n')
         else:
             print(f'\n\nПо вашему запросу найдены следующие заметки: \n\n{data}\n')
+
+
+def delete_notice(data_list: list, key, value):
+    """
+    Удаляет заметку по id
+    :param data_list: принимает список словарей автоматом
+    :param key: автоматом подсовывает id
+    :param value: принимает на вход int номер id
+    :return:
+    """
+    for index, dict_ in enumerate(data_list):
+        if key in dict_ and dict_[key] == value:
+            data_list.remove(dict_)
+            print(f'Произведено удаление записи: {dict_}')
+        rewrite_file(data_list)
+
+
+def edit_notice(data_list: list, key, value):
+    """
+    Изменяет заметку по номеру id
+    :param data_list: принимает список словарей автоматом
+    :param key: автоматом подсовывает id
+    :param value: принимает на вход int номер id
+    :return:
+    """
+    for index, dict_ in enumerate(data_list):
+        if key in dict_ and dict_[key] == value:
+            new_title = ''
+            new_msg = ''
+            change_title = input(f'Хотите оставить название заметки: {dict_.get("title")} или поменять?\n'
+                                 f'1 - Поменять\n'
+                                 f'2 - Оставить\n')
+            if change_title == '1':
+                new_title = input(f'Введите новое название заметки:')
+            elif change_title == '2':
+                new_title = dict_.get('title')
+            else:
+                print('\nВведено неверное значение!\n')
+            change_msg = input(f'Хотите оставить текст заметки: {dict_.get("msg")} или поменять?\n'
+                               f'1 - Поменять\n'
+                               f'2 - Оставить\n')
+            if change_msg == '1':
+                new_msg = input(f'Введите новое название заметки:')
+            elif change_msg == '2':
+                new_msg = dict_.get('msg')
+            else:
+                print('\nВведено неверное значение!\n')
+            data_list[index] = {
+                'id': value,
+                'title': new_title,
+                'msg': new_msg,
+                'date': datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+            }
+            print(f'Произведено изменение записи: {dict_}')
+    rewrite_file(data_list)

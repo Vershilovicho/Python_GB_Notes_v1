@@ -1,5 +1,5 @@
 from save_read_file import save_file
-from user_commands import create_new_note, show_all_notice, search_notice
+from user_commands import create_new_note, show_all_notice, search_notice, delete_notice, edit_notice
 import json
 
 
@@ -7,10 +7,12 @@ def start_note():
     """
     Исполнительный метод - коннектор модулей,
     реализует функционал:
-    1) Создания заметки
-    2) Выхода из программы
+    1) Создание заметки
+    2) Выход из программы
     3) Показывает все заметки
     4) Поиск по заметкам
+    5) Удаление заметки по id
+    6) Изменение заметки по id
     :return:
     """
     print('*** Добро пожаловать в програму заметки! *** \n')
@@ -21,12 +23,16 @@ def start_note():
                             f'2 - Выйти\n'
                             f'3 - Показать все заметки\n'
                             f'4 - Найти заметку\n'
+                            f'5 - Удалить заметку\n'
+                            f'6 - Изменить заметку\n'
                             f'Вводите сюда --->: '))
         menu = {
             '1': 'start',
             '2': 'quit',
             '3': 'show_all',
-            '4': 'search'
+            '4': 'search',
+            '5': 'delete',
+            '6': 'edit'
         }
 
         try:
@@ -70,5 +76,17 @@ def start_note():
                         search_notice(temp_list, search, 4)
                 except FileNotFoundError:
                     print(f'Вы еще не создали ни одной заметки!')
+            elif program == 'delete':
+                temp_list = json.load(open('notes.json', encoding='utf-8'))
+                print('Заметки которые вы создали:')
+                show_all_notice()
+                notice_val = int(input(f'\nВведите id заметки, которую хотите удалить: '))
+                delete_notice(temp_list, 'id', notice_val)
+            elif program == 'edit':
+                temp_list = json.load(open('notes.json', encoding='utf-8'))
+                print('Заметки которые вы создали:')
+                show_all_notice()
+                notice_val = int(input(f'\nВведите id заметки, которую хотите изменить: '))
+                edit_notice(temp_list, 'id', notice_val)
         except KeyError:
             print('Введено неверное значение, возврат в меню!')
