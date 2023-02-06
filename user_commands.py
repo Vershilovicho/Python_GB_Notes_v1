@@ -77,7 +77,7 @@ def search_notice(data_list, search_data, choice):
         else:
             print(f'\n\nПо вашему запросу найдены следующие заметки: \n\n{data}\n')
     elif choice == 2:
-        data = list(filter(lambda x: ['title'] == search_data, data_list))
+        data = list(filter(lambda x: x['title'] == search_data, data_list))
         if not data:
             print(f'\n\nДанных с таким id нет.\n\n')
         else:

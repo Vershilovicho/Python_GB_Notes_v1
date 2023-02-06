@@ -66,13 +66,13 @@ def start_note():
                         search = int(input('Введите id для поиска заметки:'))
                         search_notice(temp_list, search, 1)
                     elif choice == 'title':
-                        search = input('Введите "Тему заметки" для поиска:')
+                        search = str(input('Введите "Тему заметки" для поиска:'))
                         search_notice(temp_list, search, 2)
                     elif choice == 'msg':
-                        search = input('Введите "Текст заметки" для поиска:')
+                        search = str(input('Введите "Текст заметки" для поиска:'))
                         search_notice(temp_list, search, 3)
                     elif choice == 'data':
-                        search = input('Введите "Полную дату" для поиска:')
+                        search = str(input('Введите "Полную дату" для поиска:'))
                         search_notice(temp_list, search, 4)
                 except FileNotFoundError:
                     print(f'Вы еще не создали ни одной заметки!')
