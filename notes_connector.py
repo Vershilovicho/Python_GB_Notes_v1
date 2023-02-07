@@ -63,16 +63,16 @@ def start_note():
                     choice = search_type[choice]
                     temp_list = json.load(open('notes.json', encoding='utf-8'))
                     if choice == 'id':
-                        search = int(input('Введите id для поиска заметки:'))
+                        search = int(input('Введите id для поиска заметки (Например: 1):'))
                         search_notice(temp_list, search, 1)
                     elif choice == 'title':
-                        search = str(input('Введите "Тему заметки" для поиска:'))
+                        search = str(input('Введите "Тему заметки" для поиска (Например: Понедельник):'))
                         search_notice(temp_list, search, 2)
                     elif choice == 'msg':
-                        search = str(input('Введите "Текст заметки" для поиска:'))
+                        search = str(input('Введите "Текст заметки" для поиска (Например: Сегодня солнечно):'))
                         search_notice(temp_list, search, 3)
                     elif choice == 'data':
-                        search = str(input('Введите "Полную дату" для поиска:'))
+                        search = str(input('Введите "Полную дату" для поиска (Например: 06-02-2023 18:23:59):'))
                         search_notice(temp_list, search, 4)
                 except FileNotFoundError:
                     print(f'Вы еще не создали ни одной заметки!')
