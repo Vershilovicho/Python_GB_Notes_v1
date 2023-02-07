@@ -124,20 +124,20 @@ def edit_notice(data_list: list, key, value):
         if key in dict_ and dict_[key] == value:
             new_title = ''
             new_msg = ''
-            change_title = input(f'Хотите оставить название заметки: {dict_.get("title")} или поменять?\n'
+            change_title = input(f'Хотите оставить название заметки: "{dict_.get("title")}" или поменять?\n'
                                  f'1 - Поменять\n'
                                  f'2 - Оставить\n')
             if change_title == '1':
-                new_title = input(f'Введите новое название заметки:')
+                new_title = input(f'Введите новое название заметки: ')
             elif change_title == '2':
                 new_title = dict_.get('title')
             else:
                 print('\nВведено неверное значение!\n')
-            change_msg = input(f'Хотите оставить текст заметки: {dict_.get("msg")} или поменять?\n'
+            change_msg = input(f'Хотите оставить текст заметки: "{dict_.get("msg")}" или поменять?\n'
                                f'1 - Поменять\n'
                                f'2 - Оставить\n')
             if change_msg == '1':
-                new_msg = input(f'Введите новое название заметки:')
+                new_msg = input(f'Введите новое название заметки: ')
             elif change_msg == '2':
                 new_msg = dict_.get('msg')
             else:
@@ -148,5 +148,5 @@ def edit_notice(data_list: list, key, value):
                 'msg': new_msg,
                 'date': datetime.now().strftime('%d-%m-%Y %H:%M:%S')
             }
-            print(f'Произведено изменение записи: {dict_}')
+            print(f'Произведено изменение заметки с {dict_} на {data_list[index]}')
     rewrite_file(data_list)
