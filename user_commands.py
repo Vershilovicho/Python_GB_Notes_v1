@@ -56,8 +56,9 @@ def show_all_notice():
     :return: Все заметки
     """
     try:
-        result = print(load_file())
-        return result
+        data = load_file()
+        for val in data:
+            print(val)
     except FileNotFoundError:
         print(f'{"-" * 15}\nЗаметок еще нет\n{"-" * 15}')
 
