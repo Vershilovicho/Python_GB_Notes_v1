@@ -3,21 +3,22 @@ from datetime import datetime
 
 class Notes:
     id = 0
-    title = ''
+    header = ''
     msg = ''
     change_date = None
 
-    def __init__(self, title, msg):
+    def __init__(self, header, msg):
+        
         self.id = Notes.id + 1
         Notes.id += 1
-        self.title = title
+        self.header = header
         self.msg = msg
         self.change_date = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
     def __str__(self):
         details = ''
         details += f'{self.id} '
-        details += f'{self.title}; '
+        details += f'{self.header}; '
         details += f'{self.msg}; '
         details += f'{self.change_date}'
         return details
@@ -25,8 +26,8 @@ class Notes:
     def get_id(self):
         return self.id
 
-    def get_title(self):
-        return self.title
+    def get_header(self):
+        return self.header
 
     def get_msg(self):
         return self.msg
@@ -38,8 +39,8 @@ class Notes:
         self.id = data
         return self.id
 
-    def set_title(self, x):
-        self.title = x
+    def set_header(self, x):
+        self.header = x
 
     def set_msg(self, x):
         self.msg = x
